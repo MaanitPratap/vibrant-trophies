@@ -63,57 +63,30 @@ export function StatsOverview({ games }: StatsOverviewProps) {
 
   return (
     <section className="mb-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((stat, index) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ scale: 1.02, y: -2 }}
+            whileHover={{ scale: 1.04, y: -4 }}
           >
-            <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="group relative overflow-hidden bg-white dark:bg-slate-900 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl border-0">
               {/* Background gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
-              
-              <CardContent className="relative p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-lg`}>
-                    <stat.icon className="w-6 h-6 text-white" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
+              <CardContent className="relative p-8 flex flex-col gap-4">
+                <div className="flex items-center justify-between mb-2">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-lg`}>
+                    <stat.icon className="w-7 h-7 text-white" />
                   </div>
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.1, 1],
-                      rotate: [0, 5, -5, 0]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 5
-                    }}
-                    className="text-xs text-green-600 dark:text-green-400 font-medium"
-                  >
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/80 dark:bg-slate-800/80 text-gray-700 dark:text-gray-200 shadow border border-gray-200 dark:border-gray-700">{stat.label}</span>
+                </div>
+                <div className="flex items-end justify-between">
+                  <div className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">{stat.value}</div>
+                  <div className="text-xs text-green-600 dark:text-green-400 font-medium ml-2 mb-1">
                     {stat.change}
-                  </motion.div>
-                </div>
-                
-                <div>
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    className="text-3xl font-bold text-gray-800 dark:text-white mb-1"
-                  >
-                    {stat.value}
-                  </motion.p>
-                  <CardDescription className="text-sm">
-                    {stat.label}
-                  </CardDescription>
-                </div>
-                
-                {/* Progress indicator */}
-                <div className="mt-4 space-y-2">
-                  <Progress value={stat.progress} className="h-1" />
+                  </div>
                 </div>
               </CardContent>
             </Card>

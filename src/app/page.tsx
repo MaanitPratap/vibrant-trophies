@@ -150,19 +150,20 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-8 lg:ml-32">
+      <div className="container mx-auto px-4 py-10 lg:ml-32">
         {/* Stats Overview */}
-        <StatsOverview games={games} />
-
-        {/* Removed Game Analytics section */}
+        <section className="mb-12">
+          <h2 className="text-xl font-semibold text-gray-700 dark:text-white mb-4 tracking-tight">Overview</h2>
+          <StatsOverview games={games} />
+        </section>
 
         {/* Games Grid */}
         <section className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Your Games</h2>
-            {/* Removed View All Games button */}
+            <h2 className="text-xl font-semibold text-gray-700 dark:text-white tracking-tight">Your Games</h2>
+            {/* Removed View All Games button for modern glanceable look */}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {games.map((game, index) => (
               <GameCard key={game.id} game={game} index={index} />
             ))}
@@ -170,15 +171,13 @@ export default function Home() {
         </section>
 
         {/* Recent Achievements and Active Streaks */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Recent Achievements */}
-          <section>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Recent Achievements</h2>
-              <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700">
-                View All
-              </Button>
-            </div>
+          <section className="rounded-2xl bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-purple-900/30 dark:via-slate-900 dark:to-indigo-900/30 shadow-md p-6">
+            <h2 className="text-lg font-bold text-purple-700 dark:text-purple-200 mb-4 flex items-center gap-2">
+              <Trophy className="w-5 h-5 text-yellow-400" />
+              Recent Achievements
+            </h2>
             <div className="space-y-4">
               {recentAchievements.map((achievement) => (
                 <AchievementCard key={achievement.id} achievement={achievement} />
@@ -187,13 +186,11 @@ export default function Home() {
           </section>
 
           {/* Active Streaks */}
-          <section>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Active Streaks</h2>
-              <Button variant="ghost" size="sm" className="text-orange-600 hover:text-orange-700">
-                View All
-              </Button>
-            </div>
+          <section className="rounded-2xl bg-gradient-to-br from-orange-50 via-white to-yellow-50 dark:from-orange-900/30 dark:via-slate-900 dark:to-yellow-900/30 shadow-md p-6">
+            <h2 className="text-lg font-bold text-orange-700 dark:text-orange-200 mb-4 flex items-center gap-2">
+              <Flame className="w-5 h-5 text-orange-400" />
+              Active Streaks
+            </h2>
             <div className="space-y-4">
               {activeStreaks.map((streak) => (
                 <StreakCard key={streak.id} streak={streak} />
