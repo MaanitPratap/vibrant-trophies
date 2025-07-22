@@ -1,6 +1,6 @@
 "use client";
 
-import { Play, Trophy, Flame, Target } from "lucide-react";
+import { Play, Trophy, Flame, Target, Zap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -24,93 +24,44 @@ interface GameCardProps {
 }
 
 export function GameCard({ game, index }: GameCardProps) {
-  const achievementProgress = Math.min((game.achievements / 20) * 100, 100);
-  const streakProgress = Math.min((game.currentStreak / 30) * 100, 100);
-
+  // Restore all stats, but reorganize for clarity and modern look
   return (
-    <TooltipProvider>
-      <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-2">
-        {/* Background gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
-        
-        <CardHeader className="relative pb-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${game.color} flex items-center justify-center shadow-lg`}>
-                <img 
-                  src={game.icon} 
-                  alt={game.name}
-                  className="w-8 h-8 object-contain"
-                />
-              </div>
-              <div>
-                <CardTitle className="text-lg text-gray-800 dark:text-white">{game.name}</CardTitle>
-                <CardDescription className="text-sm">Your Progress</CardDescription>
-              </div>
-            </div>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <Play className="w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Play {game.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
-        </CardHeader>
-
-        <CardContent className="relative space-y-4">
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <div className="flex items-center justify-center space-x-1 mb-1">
-                <Trophy className="w-4 h-4 text-yellow-500" />
-                <span className="text-lg font-bold text-gray-800 dark:text-white">{game.achievements}</span>
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Achievements</div>
-            </div>
-            <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <div className="flex items-center justify-center space-x-1 mb-1">
-                <Flame className="w-4 h-4 text-orange-500" />
-                <span className="text-lg font-bold text-gray-800 dark:text-white">{game.currentStreak}</span>
-              </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Day Streak</div>
-            </div>
-          </div>
-
-          {/* Progress Bars */}
-          <div className="space-y-3">
-            <div className="space-y-1">
-              <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                <span>Achievement Progress</span>
-                <span>{Math.round(achievementProgress)}%</span>
-              </div>
-              <Progress value={achievementProgress} className="h-2" />
-            </div>
-            <div className="space-y-1">
-              <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                <span>Streak Progress</span>
-                <span>{Math.round(streakProgress)}%</span>
-              </div>
-              <Progress value={streakProgress} className="h-2" />
-            </div>
-          </div>
-
-          {/* Additional Stats */}
-          <div className="flex items-center justify-between text-xs">
-            <div className="flex items-center space-x-1">
-              <Target className="w-3 h-3 text-gray-400" />
-              <span className="text-gray-500 dark:text-gray-400">Best Score:</span>
-              <span className="font-semibold text-gray-800 dark:text-white">{game.bestScore.toLocaleString()}</span>
-            </div>
-            <Badge variant="secondary" className="text-xs">
-              {game.totalPlayed} games
-            </Badge>
-          </div>
-        </CardContent>
-      </Card>
-    </TooltipProvider>
+    <Card className="group relative overflow-hidden bg-white dark:bg-slate-900 shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl border-0 cursor-pointer p-6 flex flex-col gap-4 hover:scale-105">
+      {/* Background gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
+      <div className="relative z-10 flex flex-col items-center gap-3">
+        {/* Icon and Name */}
+        <div className="mb-1 flex items-center justify-center relative">
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="w-14 h-14 rounded-full bg-black/10 dark:bg-white/10 blur-md opacity-60 shadow-xl"></span>
+          </span>
+          <img src={game.icon} alt={game.name} className="w-12 h-12 object-contain relative z-10" />
+        </div>
+        <div className="text-lg font-bold text-gray-800 dark:text-white mb-1">{game.name}</div>
+      </div>
+      {/* Stats Grid: 2x2 boxes for Achievements, Streak, Best Score, Games Played */}
+      <div className="relative z-10 grid grid-cols-2 gap-4 w-full mt-2">
+        <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+          <Trophy className="w-5 h-5 text-yellow-500 mb-1" />
+          <div className="text-base font-semibold text-gray-800 dark:text-white">{game.achievements}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Achievements</div>
+        </div>
+        <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+          <Flame className="w-5 h-5 text-orange-500 mb-1" />
+          <div className="text-base font-semibold text-gray-800 dark:text-white">{game.currentStreak}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Day Streak</div>
+        </div>
+        <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+          <Target className="w-5 h-5 text-blue-400 mb-1" />
+          <div className="text-base font-semibold text-gray-800 dark:text-white">{game.bestScore.toLocaleString()}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Best Score</div>
+        </div>
+        <div className="flex flex-col items-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3">
+          <Zap className="w-5 h-5 text-green-400 mb-1" />
+          <div className="text-base font-semibold text-gray-800 dark:text-white">{game.totalPlayed}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">Played</div>
+        </div>
+      </div>
+    </Card>
   );
 } 
