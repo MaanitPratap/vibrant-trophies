@@ -145,12 +145,7 @@ export default function Home() {
                 <p className="text-purple-100 text-sm">Your Gaming Achievements Hub</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                <Star className="w-4 h-4 mr-2" />
-                View All Achievements
-              </Button>
-            </div>
+            {/* Removed View All Achievements button */}
           </div>
         </div>
       </header>
@@ -159,24 +154,13 @@ export default function Home() {
         {/* Stats Overview */}
         <StatsOverview games={games} />
 
-        {/* Game Tabs Section */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Game Analytics</h2>
-            <Button variant="outline" className="hover:bg-purple-50 dark:hover:bg-purple-900/20">
-              View Details
-            </Button>
-          </div>
-          <GameTabs games={games} />
-        </section>
+        {/* Removed Game Analytics section */}
 
         {/* Games Grid */}
         <section className="mb-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Your Games</h2>
-            <Button variant="outline" className="hover:bg-purple-50 dark:hover:bg-purple-900/20">
-              View All Games
-            </Button>
+            {/* Removed View All Games button */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {games.map((game, index) => (
