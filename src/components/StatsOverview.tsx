@@ -61,17 +61,19 @@ export function StatsOverview({ games }: StatsOverviewProps) {
     }
   ];
 
+  const statLinks: { [label: string]: string | undefined } = {
+    "Total Achievements": "/achievements",
+    "Active Streaks": "/streaks",
+    "Games Played": "/leaderboard",
+    // No link for Avg Best Score
+  };
+
   return (
     <section className="mb-12">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ scale: 1.04, y: -4 }}
-          >
+        {stats.map((stat, index) => {
+          const link = statLinks[stat.label];
+          const cardContent = (
             <Card className="group relative overflow-hidden bg-white dark:bg-slate-900 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl border-0">
               {/* Background gradient */}
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
@@ -90,8 +92,25 @@ export function StatsOverview({ games }: StatsOverviewProps) {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
-        ))}
+          );
+          return (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.04, y: -4 }}
+            >
+              {link ? (
+                <a href={link} tabIndex={0} className="focus:outline-none rounded-2xl block">
+                  {cardContent}
+                </a>
+              ) : (
+                cardContent
+              )}
+            </motion.div>
+          );
+        })}
       </div>
       
       {/* Quick Actions */}

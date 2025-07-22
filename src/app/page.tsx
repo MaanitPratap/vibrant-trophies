@@ -6,6 +6,9 @@ import { StreakCard } from "@/components/StreakCard";
 import { StatsOverview } from "@/components/StatsOverview";
 import { GameTabs } from "@/components/GameTabs";
 import { Navigation } from "@/components/Navigation";
+import { NotificationsMenu } from "@/components/NotificationsMenu";
+import Link from "next/link";
+import { Play } from "lucide-react";
 
 export default function Home() {
   const games = [
@@ -145,7 +148,19 @@ export default function Home() {
                 <p className="text-purple-100 text-sm">Your Gaming Achievements Hub</p>
               </div>
             </div>
-            {/* Removed View All Achievements button */}
+            <div className="flex items-center gap-2">
+              <Link href="https://vibrantminds2.seniorsplace.ca" target="_blank" rel="noopener noreferrer">
+                <Button
+                  className="rounded-xl border-2 border-yellow-400 text-yellow-400 hover:border-yellow-300 hover:text-yellow-300 hover:shadow-md focus-visible:shadow-md bg-transparent hover:bg-transparent focus-visible:bg-transparent transition-all flex items-center gap-2 font-semibold px-5 py-2 transform hover:scale-105 focus-visible:scale-105 duration-200"
+                >
+                  <Play className="w-4 h-4 mr-1" />
+                  Play Games
+                </Button>
+              </Link>
+              <div className="transition-all transform duration-200 hover:scale-105 focus-visible:scale-105">
+                <NotificationsMenu achievements={recentAchievements} />
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -169,35 +184,7 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-        {/* Recent Achievements and Active Streaks */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Recent Achievements */}
-          <section className="rounded-2xl bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-purple-900/30 dark:via-slate-900 dark:to-indigo-900/30 shadow-md p-6">
-            <h2 className="text-lg font-bold text-purple-700 dark:text-purple-200 mb-4 flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-yellow-400" />
-              Recent Achievements
-            </h2>
-            <div className="space-y-4">
-              {recentAchievements.map((achievement) => (
-                <AchievementCard key={achievement.id} achievement={achievement} />
-              ))}
-            </div>
-          </section>
-
-          {/* Active Streaks */}
-          <section className="rounded-2xl bg-gradient-to-br from-orange-50 via-white to-yellow-50 dark:from-orange-900/30 dark:via-slate-900 dark:to-yellow-900/30 shadow-md p-6">
-            <h2 className="text-lg font-bold text-orange-700 dark:text-orange-200 mb-4 flex items-center gap-2">
-              <Flame className="w-5 h-5 text-orange-400" />
-              Active Streaks
-            </h2>
-            <div className="space-y-4">
-              {activeStreaks.map((streak) => (
-                <StreakCard key={streak.id} streak={streak} />
-              ))}
-            </div>
-          </section>
-        </div>
+        {/* Removed Recent Achievements and Active Streaks sections from main page */}
       </div>
     </div>
   );
