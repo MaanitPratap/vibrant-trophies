@@ -1,10 +1,10 @@
 "use client";
 
-import { Star, Clock, Zap } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Trophy, Star, Zap } from "lucide-react";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AchievementDialog } from "@/components/AchievementDialog";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 interface Achievement {
   id: number;
@@ -28,13 +28,6 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
     legendary: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
   };
 
-  const rarityIcons = {
-    common: "⭐",
-    rare: "⭐⭐",
-    epic: "⭐⭐⭐",
-    legendary: "⭐⭐⭐⭐"
-  };
-
   const gradientColors = {
     common: "from-gray-400 to-gray-500",
     rare: "from-blue-400 to-blue-500",
@@ -42,70 +35,111 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
     legendary: "from-yellow-400 to-orange-500"
   };
 
+  const rarityIcons = {
+    common: <Star className="w-3 h-3" />,
+    rare: <Star className="w-3 h-3" />,
+    epic: <Zap className="w-3 h-3" />,
+    legendary: <Trophy className="w-3 h-3" />
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02, y: -2 }}
-    >
-      <Card className="group relative overflow-hidden border-0 shadow-md hover:shadow-lg transition-all duration-300">
-        {/* Rarity border */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${gradientColors[achievement.rarity]} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
-        
-        <CardContent className="relative p-4">
-          <div className="flex items-start space-x-4">
-            {/* Achievement Icon */}
-            <div className={`flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br ${gradientColors[achievement.rarity]} flex items-center justify-center text-2xl shadow-lg`}>
-              {achievement.icon}
-            </div>
-            
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-2">
-                <CardTitle className="text-sm font-semibold text-gray-800 dark:text-white truncate">
-                  {achievement.title}
-                </CardTitle>
-                <div className="flex items-center space-x-1">
-                  {rarityIcons[achievement.rarity].split('').map((star, index) => (
-                    <span key={index} className="text-xs">{star}</span>
-                  ))}
-                </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card className="group relative overflow-hidden border-0 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-102">
+          {/* Rarity border */}
+          <div className={`absolute inset-0 bg-gradient-to-r ${gradientColors[achievement.rarity]} opacity-10 group-hover:opacity-20 transition-opacity duration-300`} />
+          
+          <CardContent className="relative p-4">
+            <div className="flex items-start space-x-3">
+              {/* Achievement Icon */}
+              <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${gradientColors[achievement.rarity]} flex items-center justify-center shadow-md`}>
+                <img 
+                  src={achievement.icon} 
+                  alt={achievement.game}
+                  className="w-6 h-6 object-contain"
+                />
               </div>
               
-              <CardDescription className="text-xs text-gray-600 dark:text-gray-400 mb-2 line-clamp-2">
-                {achievement.description}
-              </CardDescription>
-              
-              <div className="flex items-center justify-between">
-                <Badge variant="secondary" className={rarityColors[achievement.rarity]}>
-                  {achievement.game}
-                </Badge>
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-1">
+                  <CardTitle className="text-sm font-semibold text-gray-800 dark:text-white truncate">
+                    {achievement.title}
+                  </CardTitle>
+                  <Badge className={`text-xs ${rarityColors[achievement.rarity]}`}>
+                    {rarityIcons[achievement.rarity]}
+                  </Badge>
+                </div>
                 
-                <div className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400">
-                  <Clock className="w-3 h-3" />
-                  <span>{achievement.earnedAt}</span>
+                <CardDescription className="text-xs text-gray-600 dark:text-gray-400 mb-2 line-clamp-2">
+                  {achievement.description}
+                </CardDescription>
+                
+                <div className="flex items-center justify-between">
+                  <Badge variant="secondary" className="text-xs">
+                    {achievement.game}
+                  </Badge>
+                  
+                  <div className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400">
+                    <span>{achievement.earnedAt}</span>
+                  </div>
                 </div>
               </div>
             </div>
+          </CardContent>
+        </Card>
+      </DialogTrigger>
+      
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center space-x-2">
+            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${gradientColors[achievement.rarity]} flex items-center justify-center`}>
+              <img 
+                src={achievement.icon} 
+                alt={achievement.game}
+                className="w-5 h-5 object-contain"
+              />
+            </div>
+            <span>{achievement.title}</span>
+          </DialogTitle>
+          <DialogDescription>
+            {achievement.description}
+          </DialogDescription>
+        </DialogHeader>
+        
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Game</span>
+            <Badge variant="outline">{achievement.game}</Badge>
           </div>
           
-          {/* Action Button */}
-          <div className="mt-3 flex justify-end">
-            <AchievementDialog achievement={achievement} />
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Rarity</span>
+            <Badge className={rarityColors[achievement.rarity]}>
+              {achievement.rarity.charAt(0).toUpperCase() + achievement.rarity.slice(1)}
+            </Badge>
           </div>
           
-          {/* Shimmer effect for legendary achievements */}
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Earned</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{achievement.earnedAt}</span>
+          </div>
+          
           {achievement.rarity === "legendary" && (
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            />
+            <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+              <div className="flex items-center space-x-2">
+                <Trophy className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
+                <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                  Legendary Achievement!
+                </span>
+              </div>
+              <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
+                This is one of the rarest achievements in the game. Congratulations!
+              </p>
+            </div>
           )}
-        </CardContent>
-      </Card>
-    </motion.div>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 } 

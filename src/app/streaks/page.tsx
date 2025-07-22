@@ -11,7 +11,7 @@ export default function StreaksPage() {
       id: 1,
       game: "Mahjong",
       days: 12,
-      icon: "🀄",
+      icon: "/logos/mahjong.svg",
       color: "from-green-500 to-emerald-500",
       bestStreak: 25,
       progress: 48
@@ -20,7 +20,7 @@ export default function StreaksPage() {
       id: 2,
       game: "Word Search",
       days: 9,
-      icon: "🔍",
+      icon: "/logos/wordsearch.svg",
       color: "from-yellow-500 to-orange-500",
       bestStreak: 15,
       progress: 60
@@ -29,7 +29,7 @@ export default function StreaksPage() {
       id: 3,
       game: "Bejeweled",
       days: 7,
-      icon: "💎",
+      icon: "/logos/bejeweled.svg",
       color: "from-purple-500 to-pink-500",
       bestStreak: 18,
       progress: 39
@@ -38,7 +38,7 @@ export default function StreaksPage() {
       id: 4,
       game: "Memory",
       days: 5,
-      icon: "🧠",
+      icon: "/logos/memory.svg",
       color: "from-blue-500 to-cyan-500",
       bestStreak: 12,
       progress: 42
@@ -47,7 +47,7 @@ export default function StreaksPage() {
       id: 5,
       game: "Whack-a-Mole",
       days: 3,
-      icon: "🔨",
+      icon: "/logos/mole.svg",
       color: "from-orange-500 to-red-500",
       bestStreak: 8,
       progress: 38
@@ -56,7 +56,7 @@ export default function StreaksPage() {
       id: 6,
       game: "Trash or Treasure",
       days: 2,
-      icon: "💎",
+      icon: "/logos/tot.svg",
       color: "from-indigo-500 to-purple-500",
       bestStreak: 5,
       progress: 40
@@ -172,7 +172,11 @@ export default function StreaksPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${streak.color} flex items-center justify-center text-2xl shadow-lg`}>
-                        {streak.icon}
+                        <img 
+                          src={streak.icon} 
+                          alt={streak.game}
+                          className="w-8 h-8 object-contain"
+                        />
                       </div>
                       <div>
                         <CardTitle className="text-lg text-gray-800 dark:text-white">{streak.game}</CardTitle>

@@ -12,7 +12,7 @@ export default function Home() {
     {
       id: "bejeweled",
       name: "Bejeweled",
-      icon: "💎",
+      icon: "/logos/bejeweled.svg",
       color: "from-purple-500 to-pink-500",
       achievements: 12,
       currentStreak: 7,
@@ -22,7 +22,7 @@ export default function Home() {
     {
       id: "whack-a-mole",
       name: "Whack-a-Mole",
-      icon: "🔨",
+      icon: "/logos/mole.svg",
       color: "from-orange-500 to-red-500",
       achievements: 8,
       currentStreak: 3,
@@ -32,7 +32,7 @@ export default function Home() {
     {
       id: "mahjong",
       name: "Mahjong",
-      icon: "🀄",
+      icon: "/logos/mahjong.svg",
       color: "from-green-500 to-emerald-500",
       achievements: 15,
       currentStreak: 12,
@@ -42,7 +42,7 @@ export default function Home() {
     {
       id: "memory",
       name: "Memory",
-      icon: "🧠",
+      icon: "/logos/memory.svg",
       color: "from-blue-500 to-cyan-500",
       achievements: 10,
       currentStreak: 5,
@@ -52,7 +52,7 @@ export default function Home() {
     {
       id: "word-search",
       name: "Word Search",
-      icon: "🔍",
+      icon: "/logos/wordsearch.svg",
       color: "from-yellow-500 to-orange-500",
       achievements: 18,
       currentStreak: 9,
@@ -62,7 +62,7 @@ export default function Home() {
     {
       id: "trash-or-treasure",
       name: "Trash or Treasure",
-      icon: "💎",
+      icon: "/logos/tot.svg",
       color: "from-indigo-500 to-purple-500",
       achievements: 6,
       currentStreak: 2,
@@ -77,7 +77,7 @@ export default function Home() {
       game: "Bejeweled",
       title: "Gem Master",
       description: "Clear 50 gems in one game",
-      icon: "💎",
+      icon: "/logos/bejeweled.svg",
       earnedAt: "2 hours ago",
       rarity: "rare" as const
     },
@@ -86,7 +86,7 @@ export default function Home() {
       game: "Mahjong",
       title: "Speed Demon",
       description: "Complete a puzzle in under 2 minutes",
-      icon: "⚡",
+      icon: "/logos/mahjong.svg",
       earnedAt: "1 day ago",
       rarity: "epic" as const
     },
@@ -95,7 +95,7 @@ export default function Home() {
       game: "Memory",
       title: "Perfect Recall",
       description: "Complete a game without any mistakes",
-      icon: "🧠",
+      icon: "/logos/memory.svg",
       earnedAt: "3 days ago",
       rarity: "legendary" as const
     }
@@ -106,21 +106,21 @@ export default function Home() {
       id: 1,
       game: "Mahjong",
       days: 12,
-      icon: "🀄",
+      icon: "/logos/mahjong.svg",
       color: "from-green-500 to-emerald-500"
     },
     {
       id: 2,
       game: "Word Search",
       days: 9,
-      icon: "🔍",
+      icon: "/logos/wordsearch.svg",
       color: "from-yellow-500 to-orange-500"
     },
     {
       id: 3,
       game: "Bejeweled",
       days: 7,
-      icon: "💎",
+      icon: "/logos/bejeweled.svg",
       color: "from-purple-500 to-pink-500"
     }
   ];

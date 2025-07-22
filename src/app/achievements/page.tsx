@@ -12,7 +12,7 @@ export default function AchievementsPage() {
       game: "Bejeweled",
       title: "Gem Master",
       description: "Clear 50 gems in one game",
-      icon: "💎",
+      icon: "/logos/bejeweled.svg",
       earnedAt: "2 hours ago",
       rarity: "rare" as const,
       category: "combat"
@@ -22,7 +22,7 @@ export default function AchievementsPage() {
       game: "Mahjong",
       title: "Speed Demon",
       description: "Complete a puzzle in under 2 minutes",
-      icon: "⚡",
+      icon: "/logos/mahjong.svg",
       earnedAt: "1 day ago",
       rarity: "epic" as const,
       category: "speed"
@@ -32,7 +32,7 @@ export default function AchievementsPage() {
       game: "Memory",
       title: "Perfect Recall",
       description: "Complete a game without any mistakes",
-      icon: "🧠",
+      icon: "/logos/memory.svg",
       earnedAt: "3 days ago",
       rarity: "legendary" as const,
       category: "precision"
@@ -42,7 +42,7 @@ export default function AchievementsPage() {
       game: "Word Search",
       title: "Word Wizard",
       description: "Find 20 words in under 5 minutes",
-      icon: "🔍",
+      icon: "/logos/wordsearch.svg",
       earnedAt: "1 week ago",
       rarity: "rare" as const,
       category: "speed"
@@ -52,7 +52,7 @@ export default function AchievementsPage() {
       game: "Whack-a-Mole",
       title: "Lightning Fast",
       description: "Hit 100 moles in 60 seconds",
-      icon: "🔨",
+      icon: "/logos/mole.svg",
       earnedAt: "2 weeks ago",
       rarity: "epic" as const,
       category: "speed"
@@ -62,7 +62,7 @@ export default function AchievementsPage() {
       game: "Trash or Treasure",
       title: "Treasure Hunter",
       description: "Find 10 treasures in one session",
-      icon: "💎",
+      icon: "/logos/tot.svg",
       earnedAt: "1 month ago",
       rarity: "common" as const,
       category: "exploration"
@@ -206,7 +206,11 @@ export default function AchievementsPage() {
                   <div className="flex items-start space-x-4">
                     {/* Achievement Icon */}
                     <div className={`flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br ${gradientColors[achievement.rarity]} flex items-center justify-center text-2xl shadow-lg`}>
-                      {achievement.icon}
+                      <img 
+                        src={achievement.icon} 
+                        alt={achievement.game}
+                        className="w-8 h-8 object-contain"
+                      />
                     </div>
                     
                     {/* Content */}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1436px" height="1436px" viewBox="0 0 1436 1436" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>GroupMahjong</title>
+    <desc>Memory game image</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1050.000000, -2760.000000)">
+            <g id="Group" transform="translate(1050.645136, 2760.921362)">
+                <path d="M1191.2971,1434.62096 L243.567219,1434.62096 C109.049241,1434.62096 2.27373675e-13,1325.58977 2.27373675e-13,1191.09993 L2.27373675e-13,243.521029 C2.27373675e-13,109.025313 109.049241,2.27373675e-13 243.567219,2.27373675e-13 L1191.2971,2.27373675e-13 C1325.81508,2.27373675e-13 1434.85844,109.025313 1434.85844,243.521029 L1434.85844,1191.09993 C1434.85844,1325.58977 1325.81508,1434.62096 1191.2971,1434.62096" id="Fill-7" fill="#3291FF"/>
+               
+                    <rect x="473" y="273" width="240" height="440" fill="#ffbf36" rx="40" ry="40"/>
+                    <rect x="483" y="283" width="220" height="420" rx="40" ry="40" fill="#ffae36"/>
+                    <rect x="493" y="293" width="200" height="400" rx="40" ry="40" fill="#ffbf36"/>
+
+                    <rect x="723" y="273" width="240" height="440" fill="#ffffff" rx="40" ry="40"/>
+                    <circle r="70" fill="blue" cx="843" cy="493"/>
+
+                    <rect x="723" y="723" width="240" height="440" fill="#ffbf36" rx="40" ry="40"/>
+                    <rect x="733" y="733" width="220" height="420" rx="40" ry="40" fill="#ffae36"/>
+                    <rect x="743" y="743" width="200" height="400" rx="40" ry="40" fill="#ffbf36"/>
+
+                    <rect x="473" y="723" width="240" height="440" fill="#ffffff" rx="40" ry="40"/>
+                    <rect fill="red" width="140" height="140" x="523" y="873"/>
+            </g>
+        </g>
+    </g>
+</svg>

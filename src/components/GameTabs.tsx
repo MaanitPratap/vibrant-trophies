@@ -4,7 +4,6 @@ import { Trophy, Flame, Target, Star, Users, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 interface Game {
   id: string;
@@ -27,12 +26,7 @@ export function GameTabs({ games }: GameTabsProps) {
   const totalGamesPlayed = games.reduce((sum, game) => sum + game.totalPlayed, 0);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full"
-    >
+    <div className="w-full">
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="grid w-full grid-cols-4 bg-gray-100 dark:bg-gray-800">
           <TabsTrigger value="overview" className="flex items-center space-x-2">
@@ -56,17 +50,19 @@ export function GameTabs({ games }: GameTabsProps) {
         <TabsContent value="overview" className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {games.map((game, index) => (
-              <motion.div
+              <div
                 key={game.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
+                className="transition-all duration-300 hover:scale-105 hover:-translate-y-2"
               >
                 <Card className="hover:shadow-lg transition-all duration-300">
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${game.color} flex items-center justify-center text-lg`}>
-                        {game.icon}
+                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${game.color} flex items-center justify-center shadow-md`}>
+                        <img 
+                          src={game.icon} 
+                          alt={game.name}
+                          className="w-6 h-6 object-contain"
+                        />
                       </div>
                       <div>
                         <CardTitle className="text-lg">{game.name}</CardTitle>
@@ -89,7 +85,7 @@ export function GameTabs({ games }: GameTabsProps) {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         </TabsContent>
@@ -196,6 +192,6 @@ export function GameTabs({ games }: GameTabsProps) {
           </Card>
         </TabsContent>
       </Tabs>
-    </motion.div>
+    </div>
   );
 } 
