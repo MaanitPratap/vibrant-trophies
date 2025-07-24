@@ -136,19 +136,19 @@ export default function Home() {
       <header className="relative overflow-hidden bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative z-10 container mx-auto px-6 py-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+          <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center space-x-4 justify-center md:justify-start">
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl backdrop-blur-sm">
                 <Trophy className="w-6 h-6 text-yellow-300" />
               </div>
-              <div>
+              <div className="text-center md:text-left">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   VibrantTrophies
                 </h1>
                 <p className="text-purple-100 text-sm">Your Gaming Achievements Hub</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 justify-center md:justify-end">
               <Link href="https://vibrantminds2.seniorsplace.ca" target="_blank" rel="noopener noreferrer">
                 <Button
                   className="rounded-xl border-2 border-yellow-400 text-yellow-400 hover:border-yellow-300 hover:text-yellow-300 hover:shadow-md focus-visible:shadow-md bg-transparent hover:bg-transparent focus-visible:bg-transparent transition-all flex items-center gap-2 font-semibold px-5 py-2 transform hover:scale-105 focus-visible:scale-105 duration-200"

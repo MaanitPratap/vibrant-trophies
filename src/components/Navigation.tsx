@@ -42,40 +42,46 @@ export function Navigation() {
             className="fixed inset-0 z-50 md:hidden"
           >
             <div className="absolute inset-0 bg-black/50" onClick={() => setIsOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-80 bg-white dark:bg-gray-800 shadow-xl">
-              <div className="p-6">
-                <div className="flex items-center space-x-3 mb-8">
+            <div className="absolute right-0 top-0 h-full w-full max-w-xs sm:max-w-sm md:w-80 bg-white dark:bg-gray-800 shadow-2xl rounded-l-2xl flex flex-col overflow-y-auto">
+              <div className="flex items-center justify-between p-6 pb-2">
+                <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
                     <Trophy className="w-5 h-5 text-white" />
                   </div>
                   <span className="text-lg font-bold text-gray-800 dark:text-white">VibrantTrophies</span>
                 </div>
-                
-                <nav className="space-y-2">
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link href={item.href} onClick={() => setIsOpen(false)}>
-                        <Button
-                          variant={pathname === item.href ? "default" : "ghost"}
-                          className={`w-full justify-start ${
-                            pathname === item.href 
-                              ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200" 
-                              : "text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
-                          }`}
-                        >
-                          <item.icon className="w-4 h-4 mr-3" />
-                          {item.label}
-                        </Button>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </nav>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6 text-gray-500 dark:text-gray-300" />
+                </button>
               </div>
+              <nav className="flex-1 flex flex-col space-y-2 px-6 pb-6 pt-2">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link href={item.href} onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant={pathname === item.href ? "default" : "ghost"}
+                        className={`w-full justify-start py-4 text-lg ${
+                          pathname === item.href 
+                            ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200" 
+                            : "text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                        }`}
+                      >
+                        <item.icon className="w-5 h-5 mr-3" />
+                        {item.label}
+                      </Button>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
             </div>
           </motion.div>
         )}
