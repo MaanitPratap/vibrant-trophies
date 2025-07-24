@@ -5,7 +5,6 @@ import { AchievementCard } from "@/components/AchievementCard";
 import { StreakCard } from "@/components/StreakCard";
 import { StatsOverview } from "@/components/StatsOverview";
 import { GameTabs } from "@/components/GameTabs";
-import { Navigation } from "@/components/Navigation";
 import { NotificationsMenu } from "@/components/NotificationsMenu";
 import Link from "next/link";
 import { Play } from "lucide-react";
@@ -130,7 +129,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <Navigation />
       
       {/* Header */}
       <header className="relative overflow-hidden bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white">

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Navigation } from "@/components/Navigation";
 
 export default function SettingsPage() {
   const userProfile = {
@@ -56,7 +55,6 @@ export default function SettingsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <Navigation />
       
       {/* Header */}
       <header className="relative overflow-hidden bg-gradient-to-r from-gray-600 via-slate-600 to-gray-700 text-white">
