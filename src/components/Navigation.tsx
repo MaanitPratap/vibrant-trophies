@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export function Navigation() {
   ];
 
   return (
-    <>
+    <TooltipProvider>
       {/* Mobile menu button */}
       <Button
         variant="ghost"
@@ -66,19 +67,26 @@ export function Navigation() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link href={item.href} onClick={() => setIsOpen(false)}>
-                      <Button
-                        variant={pathname === item.href ? "default" : "ghost"}
-                        className={`w-full justify-start py-4 text-lg ${
-                          pathname === item.href 
-                            ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200" 
-                            : "text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
-                        }`}
-                      >
-                        <item.icon className="w-5 h-5 mr-3" />
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href={item.href} onClick={() => setIsOpen(false)}>
+                          <Button
+                            variant={pathname === item.href ? "default" : "ghost"}
+                            className={`w-full justify-start py-4 text-lg ${
+                              pathname === item.href 
+                                ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200" 
+                                : "text-gray-600 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
+                            }`}
+                          >
+                            <item.icon className="w-5 h-5 mr-3" />
+                            {item.label}
+                          </Button>
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent side="right" className="font-semibold">
                         {item.label}
-                      </Button>
-                    </Link>
+                      </TooltipContent>
+                    </Tooltip>
                   </motion.div>
                 ))}
               </nav>
@@ -100,25 +108,32 @@ export function Navigation() {
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href={item.href}>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className={`w-14 h-14 p-0 rounded-xl border border-white/50 dark:border-gray-600/50 shadow-sm hover:shadow-md transition-all duration-200 ${
-                      pathname === item.href
-                        ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-200"
-                        : "bg-white/70 dark:bg-gray-700/70 hover:bg-purple-100 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300"
-                    }`}
-                    title={item.label}
-                  >
-                    <item.icon className="w-6 h-6" />
-                  </Button>
-                </Link>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link href={item.href}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className={`w-14 h-14 p-0 rounded-xl border border-white/50 dark:border-gray-600/50 shadow-sm hover:shadow-md transition-all duration-200 ${
+                          pathname === item.href
+                            ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-200"
+                            : "bg-white/70 dark:bg-gray-700/70 hover:bg-purple-100 dark:hover:bg-purple-900/30 text-gray-700 dark:text-gray-300"
+                        }`}
+                        title={item.label}
+                      >
+                        <item.icon className="w-6 h-6" />
+                      </Button>
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="right" className="font-semibold">
+                    {item.label}
+                  </TooltipContent>
+                </Tooltip>
               </motion.div>
             ))}
           </div>
         </div>
       </nav>
-    </>
+    </TooltipProvider>
   );
 } 
