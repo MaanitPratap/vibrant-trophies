@@ -143,7 +143,7 @@ export default function Home() {
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   VibrantTrophies
                 </h1>
-                <p className="text-purple-100 text-sm">Your Gaming Achievements Hub</p>
+                <p className="text-purple-100 text-sm">Your Gaming Achievements Hub for VibrantMinds</p>
               </div>
             </div>
             <div className="flex items-center gap-2 justify-center md:justify-end">

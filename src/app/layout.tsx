@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VibrantTrophies - Your Gaming Achievements Hub",
+  title: "VibrantTrophies - Your Gaming Achievements Hub for VibrantMinds",
   description: "Track your achievements and streaks across 6 amazing games",
 };
 
