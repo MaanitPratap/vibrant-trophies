@@ -7,6 +7,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
+import { LoginButton } from "@/components/auth/LoginButton";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,6 +90,9 @@ export function Navigation() {
                     </Tooltip>
                   </motion.div>
                 ))}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <LoginButton />
+                </div>
               </nav>
             </div>
           </motion.div>
@@ -134,6 +138,11 @@ export function Navigation() {
           </div>
         </div>
       </nav>
+
+      {/* Desktop Login Button */}
+      <div className="hidden lg:block fixed top-8 right-8 z-40">
+        <LoginButton />
+      </div>
     </TooltipProvider>
   );
 } 
